@@ -12,19 +12,17 @@
 
 <body>
 
-<!-- ================= NAVIGATION ================= -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
     <div class="brand">
-
         <div class="logo">☁</div>
 
         <div>
             <h1>Devi Store</h1>
             <span>AWS Multi-Tier Demo</span>
         </div>
-
     </div>
 
     <nav>
@@ -33,16 +31,15 @@
         <a href="#architecture">Architecture</a>
     </nav>
 
-    <div class="cart">
+    <button class="cart" id="cart-button">
         🛒 Cart
         <span id="cart-count">0</span>
-    </div>
+    </button>
 
 </header>
 
 
 <main>
-
 
 <!-- ================= HERO ================= -->
 
@@ -90,60 +87,43 @@
 </section>
 
 
-
-<!-- ================= TECHNOLOGY OVERVIEW ================= -->
+<!-- ================= TECHNOLOGY ================= -->
 
 <section class="stats">
 
     <div class="stat-card">
-
         <span>🌐</span>
-
         <div>
             <strong>Web Tier</strong>
             <p>Nginx</p>
         </div>
-
     </div>
 
-
     <div class="stat-card">
-
         <span>⚙️</span>
-
         <div>
             <strong>Application Tier</strong>
             <p>Python / Flask</p>
         </div>
-
     </div>
 
-
     <div class="stat-card">
-
         <span>🗄️</span>
-
         <div>
             <strong>Database Tier</strong>
             <p>Amazon RDS MySQL</p>
         </div>
-
     </div>
 
-
     <div class="stat-card">
-
         <span>⚖️</span>
-
         <div>
             <strong>Load Balancing</strong>
             <p>AWS ALB</p>
         </div>
-
     </div>
 
 </section>
-
 
 
 <!-- ================= PRODUCTS ================= -->
@@ -153,19 +133,14 @@
     <div class="section-heading">
 
         <div>
-
-            <span class="eyebrow">
-                DEVI STORE
-            </span>
+            <span class="eyebrow">DEVI STORE</span>
 
             <h2>Featured Products</h2>
 
             <p>
                 Product data is retrieved through the application API.
             </p>
-
         </div>
-
 
         <div id="api-badge" class="api-badge checking">
             ● Checking API
@@ -174,17 +149,13 @@
     </div>
 
 
-    <!-- Products will be inserted here by app.js -->
-
     <div id="product-container" class="product-grid">
 
         <div class="loading-card">
 
             <div class="loader"></div>
 
-            <p>
-                Loading products from backend...
-            </p>
+            <p>Loading products...</p>
 
         </div>
 
@@ -193,23 +164,15 @@
 </section>
 
 
-
-<!-- ================= AWS ARCHITECTURE ================= -->
+<!-- ================= ARCHITECTURE ================= -->
 
 <section class="architecture" id="architecture">
 
     <div class="section-heading architecture-heading">
 
         <div>
-
-            <span class="eyebrow">
-                UNDER THE HOOD
-            </span>
-
-            <h2>
-                AWS Multi-Tier Architecture
-            </h2>
-
+            <span class="eyebrow">UNDER THE HOOD</span>
+            <h2>AWS Multi-Tier Architecture</h2>
         </div>
 
     </div>
@@ -217,88 +180,47 @@
 
     <div class="architecture-flow">
 
-
-        <!-- USER -->
-
         <div class="architecture-card">
-
             <span>👤</span>
-
             <strong>User</strong>
-
             <small>Browser</small>
-
         </div>
-
 
         <div class="arrow">→</div>
 
-
-        <!-- LOAD BALANCER -->
-
         <div class="architecture-card">
-
             <span>⚖️</span>
-
             <strong>AWS ALB</strong>
-
             <small>Load Balancer</small>
-
         </div>
-
 
         <div class="arrow">→</div>
 
-
-        <!-- FRONTEND -->
-
         <div class="architecture-card">
-
             <span>🌐</span>
-
             <strong>Frontend</strong>
-
             <small>Nginx / EC2</small>
-
         </div>
-
 
         <div class="arrow">→</div>
 
-
-        <!-- BACKEND -->
-
         <div class="architecture-card">
-
             <span>⚙️</span>
-
             <strong>Backend</strong>
-
             <small>Flask / EC2</small>
-
         </div>
-
 
         <div class="arrow">→</div>
 
-
-        <!-- DATABASE -->
-
         <div class="architecture-card">
-
             <span>🗄️</span>
-
             <strong>Database</strong>
-
             <small>RDS MySQL</small>
-
         </div>
-
 
     </div>
 
 </section>
-
 
 
 <!-- ================= SYSTEM STATUS ================= -->
@@ -307,13 +229,9 @@
 
     <div>
 
-        <span class="eyebrow">
-            SYSTEM HEALTH
-        </span>
+        <span class="eyebrow">SYSTEM HEALTH</span>
 
-        <h2>
-            Application Status
-        </h2>
+        <h2>Application Status</h2>
 
         <p>
             Live connectivity status between the application
@@ -325,62 +243,81 @@
 
     <div class="health-card">
 
-
-        <!-- BACKEND STATUS -->
-
         <div class="health-item">
 
-            <span
-                class="health-dot"
-                id="backend-dot">
-            </span>
+            <span class="health-dot" id="backend-dot"></span>
 
             <div>
-
-                <strong>
-                    Backend API
-                </strong>
+                <strong>Backend API</strong>
 
                 <p id="backend-status">
                     Checking connection...
                 </p>
-
             </div>
 
         </div>
 
 
-        <!-- DATABASE STATUS -->
-
         <div class="health-item">
 
-            <span
-                class="health-dot"
-                id="database-dot">
-            </span>
+            <span class="health-dot" id="database-dot"></span>
 
             <div>
-
-                <strong>
-                    Database
-                </strong>
+                <strong>Database</strong>
 
                 <p id="database-status">
                     Waiting for backend...
                 </p>
-
             </div>
 
         </div>
-
 
     </div>
 
 </section>
 
-
 </main>
 
+
+<!-- ================= CART POPUP ================= -->
+
+<div class="cart-modal" id="cart-modal">
+
+    <div class="cart-modal-content">
+
+        <div class="cart-header">
+
+            <h2>🛒 Your Cart</h2>
+
+            <button id="close-cart" class="close-cart">
+                &times;
+            </button>
+
+        </div>
+
+
+        <div id="cart-items">
+
+            <p class="empty-cart">
+                Your cart is empty.
+            </p>
+
+        </div>
+
+
+        <div class="cart-total">
+
+            <strong>Total</strong>
+
+            <strong id="cart-total">
+                $0.00
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 <!-- ================= FOOTER ================= -->
@@ -388,24 +325,18 @@
 <footer>
 
     <div>
-
-        <strong>
-            ☁ Devi Store
-        </strong>
+        <strong>☁ Devi Store</strong>
 
         <p>
             AWS Multi-Tier Highly Available Web Application
         </p>
-
     </div>
-
 
     <p>
         Nginx • Python Flask • Amazon RDS • AWS
     </p>
 
 </footer>
-
 
 
 <script src="app.js"></script>
