@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Devi Store | AWS Multi-Tier Demo</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+      <div class="brand">
+        <div class="logo">☁</div>
+
+        <div>
+          <h1>Devi Store</h1>
+          <span>AWS Multi-Tier Demo</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#architecture">Architecture</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="account-wrapper">
+          <button class="login-button" id="login-button">
+            Login / Sign Up
+          </button>
+
+          <div class="account-menu" id="account-menu">
+            <button id="logout-button">Logout</button>
+          </div>
+        </div>
+
+        <button class="cart" id="cart-button">
+          🛒 Cart
+          <span id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ================= HERO ================= -->
+
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <span class="badge"> HIGHLY AVAILABLE AWS ARCHITECTURE </span>
+
+          <h2>
+            Shop smarter.<br />
+            <span>Powered by AWS.</span>
+          </h2>
+
+          <p>
+            Devi Store is a cloud-based demo e-commerce application deployed
+            using a highly available multi-tier architecture on AWS with Nginx,
+            Python Flask and Amazon RDS.
+          </p>
+
+          <a href="#products" class="primary-button"> Explore Products </a>
+        </div>
+
+        <div class="cloud-card">
+          <div class="cloud-icon">☁️</div>
+
+          <h3>Devi Store</h3>
+
+          <p>Multi-Tier Web Application</p>
+
+          <div class="live-status">
+            <span class="pulse"></span>
+            Application Online
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TECHNOLOGY ================= -->
+
+      <section class="stats">
+        <div class="stat-card">
+          <span>🌐</span>
+          <div>
+            <strong>Web Tier</strong>
+            <p>Nginx</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span>⚙️</span>
+          <div>
+            <strong>Application Tier</strong>
+            <p>Python / Flask</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span>🗄️</span>
+          <div>
+            <strong>Database Tier</strong>
+            <p>Amazon RDS MySQL</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span>⚖️</span>
+          <div>
+            <strong>Load Balancing</strong>
+            <p>AWS ALB</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCTS ================= -->
+
+      <section class="products-section" id="products">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">DEVI STORE</span>
+
+            <h2>Featured Products</h2>
+
+            <p>Product data is retrieved through the application API.</p>
+          </div>
+
+          <div id="api-badge" class="api-badge checking">● Checking API</div>
+        </div>
+
+        <div id="product-container" class="product-grid">
+          <div class="loading-card">
+            <div class="loader"></div>
+
+            <p>Loading products...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ARCHITECTURE ================= -->
+
+      <section class="architecture" id="architecture">
+        <div class="section-heading architecture-heading">
+          <div>
+            <span class="eyebrow">UNDER THE HOOD</span>
+            <h2>AWS Multi-Tier Architecture</h2>
+          </div>
+        </div>
+
+        <div class="architecture-flow">
+          <div class="architecture-card">
+            <span>👤</span>
+            <strong>User</strong>
+            <small>Browser</small>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="architecture-card">
+            <span>⚖️</span>
+            <strong>AWS ALB</strong>
+            <small>Load Balancer</small>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="architecture-card">
+            <span>🌐</span>
+            <strong>Frontend</strong>
+            <small>Nginx / EC2</small>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="architecture-card">
+            <span>⚙️</span>
+            <strong>Backend</strong>
+            <small>Flask / EC2</small>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="architecture-card">
+            <span>🗄️</span>
+            <strong>Database</strong>
+            <small>RDS MySQL</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SYSTEM STATUS ================= -->
+
+      <section class="system-status">
+        <div>
+          <span class="eyebrow">SYSTEM HEALTH</span>
+
+          <h2>Application Status</h2>
+
+          <p>
+            Live connectivity status between the application and backend
+            services.
+          </p>
+        </div>
+
+        <div class="health-card">
+          <div class="health-item">
+            <span class="health-dot" id="backend-dot"></span>
+
+            <div>
+              <strong>Backend API</strong>
+
+              <p id="backend-status">Checking connection...</p>
+            </div>
+          </div>
+
+          <div class="health-item">
+            <span class="health-dot" id="database-dot"></span>
+
+            <div>
+              <strong>Database</strong>
+
+              <p id="database-status">Waiting for backend...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= CART POPUP ================= -->
+
+    <div class="cart-modal" id="cart-modal">
+      <div class="cart-modal-content">
+        <div class="cart-header">
+          <h2>🛒 Your Cart</h2>
+
+          <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+
+        <div id="cart-items">
+          <p class="empty-cart">Your cart is empty.</p>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">$0.00</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Tax (0%)</span>
+            <span id="cart-tax">$0.00</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row total-row">
+            <strong>Total</strong>
+            <strong id="cart-total">$0.00</strong>
+          </div>
+        </div>
+
+        <button id="checkout-button" class="checkout-button">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+    <!-- ================= CHECKOUT POPUP ================= -->
+
+    <!-- ================= CHECKOUT MODAL ================= -->
+
+    <div class="checkout-modal" id="checkout-modal">
+      <div class="checkout-modal-content">
+        <!-- STEP 1: SHIPPING DETAILS -->
+        <div id="checkout-step-1">
+          <div class="checkout-header">
+            <div>
+              <span class="checkout-step">STEP 1 OF 3</span>
+              <h2>Checkout</h2>
+              <p>Enter your shipping details to continue.</p>
+            </div>
+
+            <button type="button" id="close-checkout" class="close-cart">
+              &times;
+            </button>
+          </div>
+
+          <form id="customer-form">
+            <div class="form-group">
+              <label for="customer-name"> Full Name </label>
+
+              <input
+                type="text"
+                id="customer-name"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customer-email"> Email Address </label>
+
+              <input
+                type="email"
+                id="customer-email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customer-address"> Street Address </label>
+
+              <input
+                type="text"
+                id="customer-address"
+                placeholder="Enter your street address"
+                required
+              />
+            </div>
+
+            <div class="checkout-row">
+              <div class="form-group">
+                <label for="customer-city"> City </label>
+
+                <input
+                  type="text"
+                  id="customer-city"
+                  placeholder="City"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="customer-state"> State </label>
+
+                <input
+                  type="text"
+                  id="customer-state"
+                  placeholder="State"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="customer-zip"> ZIP Code </label>
+
+              <input
+                type="text"
+                id="customer-zip"
+                placeholder="ZIP Code"
+                required
+              />
+            </div>
+
+            <div class="checkout-summary">
+              <span>Order Total</span>
+
+              <strong id="checkout-total"> $0.00 </strong>
+            </div>
+
+            <button type="submit" class="checkout-button">
+              Continue to Payment
+            </button>
+          </form>
+        </div>
+
+        <!-- STEP 2: DEMO PAYMENT -->
+        <div id="checkout-step-2" class="hidden">
+          <div class="checkout-header">
+            <div>
+              <span class="checkout-step">STEP 2 OF 3</span>
+
+              <h2>Payment</h2>
+
+              <p>Complete the simulated payment to place your demo order.</p>
+            </div>
+          </div>
+
+          <div class="demo-payment-box">
+            <div class="demo-payment-icon">💳</div>
+
+            <h3>Demo Payment</h3>
+
+            <p>No real card or payment information is collected.</p>
+
+            <div class="checkout-summary">
+              <span>Amount</span>
+
+              <strong id="payment-total"> $0.00 </strong>
+            </div>
+
+            <button
+              type="button"
+              id="demo-payment-button"
+              class="checkout-button"
+            >
+              Complete Demo Payment
+            </button>
+
+            <button
+              type="button"
+              id="back-to-shipping"
+              class="secondary-button"
+            >
+              Back to Shipping
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: ORDER CONFIRMATION -->
+        <div id="checkout-step-3" class="hidden">
+          <div class="order-success">
+            <div class="success-icon">✓</div>
+
+            <span class="checkout-step"> STEP 3 OF 3 </span>
+
+            <h2>Order Confirmed!</h2>
+
+            <p>Your demo order has been successfully created.</p>
+
+            <div class="confirmation-box">
+              <div>
+                <span>Order ID</span>
+
+                <strong id="confirmation-order-id"> - </strong>
+              </div>
+
+              <div>
+                <span>Payment</span>
+
+                <strong> Demo / Simulated </strong>
+              </div>
+
+              <div>
+                <span>Total</span>
+
+                <strong id="confirmation-total"> $0.00 </strong>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              id="continue-shopping"
+              class="checkout-button"
+            >
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ================= AUTH POPUP ================= -->
+
+    <div class="auth-modal" id="auth-modal">
+      <div class="auth-box">
+        <button class="auth-close" id="auth-close">&times;</button>
+
+        <div class="auth-logo">☁</div>
+
+        <h2 id="auth-title">Welcome Back</h2>
+
+        <p class="auth-subtitle" id="auth-subtitle">
+          Login to continue to Devi Store.
+        </p>
+
+        <!-- EMAIL OTP VERIFICATION MODAL -->
+        <div class="auth-modal" id="otp-modal">
+          <div class="auth-box">
+            <button class="auth-close" id="otp-close">&times;</button>
+
+            <div class="auth-logo">✉️</div>
+
+            <h2>Verify Your Email</h2>
+
+            <p>
+              We sent a 6-digit verification code to
+              <strong id="otp-email-display"></strong>
+            </p>
+
+            <form id="otp-form">
+              <input
+                type="text"
+                id="otp-code"
+                placeholder="Enter 6-digit code"
+                maxlength="6"
+                inputmode="numeric"
+                required
+              />
+
+              <button type="submit" class="auth-submit">Verify Email</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- LOGIN FORM -->
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email"> Email Address </label>
+
+            <input
+              type="email"
+              id="login-email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password"> Password </label>
+
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="auth-submit">Login</button>
+
+          <p class="auth-switch">
+            Don't have an account?
+
+            <button type="button" id="show-signup">Create Account</button>
+          </p>
+        </form>
+
+        <!-- SIGN UP FORM -->
+
+        <form id="signup-form" class="hidden">
+          <div class="form-group">
+            <label for="signup-name"> Full Name </label>
+
+            <input
+              type="text"
+              id="signup-name"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="signup-email"> Email Address </label>
+
+            <input
+              type="email"
+              id="signup-email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="signup-password"> Password </label>
+
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="Create a password"
+              minlength="8"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="signup-confirm-password"> Confirm Password </label>
+
+            <input
+              type="password"
+              id="signup-confirm-password"
+              placeholder="Enter password again"
+              minlength="8"
+              required
+            />
+          </div>
+
+          <button type="submit" class="auth-submit">Create Account</button>
+
+          <p class="auth-switch">
+            Already have an account?
+
+            <button type="button" id="show-login">Login</button>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+      <div>
+        <strong>☁ Devi Store</strong>
+
+        <p>AWS Multi-Tier Highly Available Web Application</p>
+      </div>
+
+      <p>Nginx • Python Flask • Amazon RDS • AWS</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
