@@ -1,4 +1,3 @@
-
 const productContainer = document.getElementById("product-container");
 const apiBadge = document.getElementById("api-badge");
 
@@ -13,37 +12,31 @@ const cartCount = document.getElementById("cart-count");
 let cart = 0;
 
 
-/*
-    Temporary fallback data.
-
-    Once the Flask API and RDS database are connected,
-    products will be retrieved from /api/products.
-*/
+// Demo products displayed when the backend API is not available.
+// Once Flask + RDS are connected, products will come from /api/products.
 
 const fallbackProducts = [
     {
         id: 1,
-        name: "CloudBook Pro",
+        name: "Laptop",
         category: "Computers",
-        description: "Powerful laptop designed for cloud engineers and developers.",
+        description: "Powerful laptop for work, development and everyday use.",
         price: 899,
         icon: "💻"
     },
-
     {
         id: 2,
-        name: "CloudSound",
+        name: "Wireless Headphones",
         category: "Audio",
-        description: "Wireless headphones with immersive sound and all-day comfort.",
+        description: "Comfortable wireless headphones with high-quality sound.",
         price: 99,
         icon: "🎧"
     },
-
     {
         id: 3,
-        name: "CloudWatch Fit",
+        name: "Smart Watch",
         category: "Wearables",
-        description: "Smart watch for activity tracking, notifications and productivity.",
+        description: "Track activities, notifications and stay connected.",
         price: 199,
         icon: "⌚"
     }
@@ -57,7 +50,6 @@ function displayProducts(products) {
     products.forEach(product => {
 
         const card = document.createElement("article");
-
         card.className = "product-card";
 
         card.innerHTML = `
@@ -95,7 +87,9 @@ function displayProducts(products) {
         const button = card.querySelector(".add-button");
 
         button.addEventListener("click", () => {
+
             cart++;
+
             cartCount.textContent = cart;
 
             button.textContent = "Added ✓";
@@ -103,10 +97,13 @@ function displayProducts(products) {
             setTimeout(() => {
                 button.textContent = "Add to Cart";
             }, 900);
+
         });
 
         productContainer.appendChild(card);
+
     });
+
 }
 
 
@@ -129,17 +126,13 @@ async function loadProducts() {
 
     } catch (error) {
 
-        /*
-            Backend has not been deployed yet.
-            Display demo products so the frontend
-            can still be tested locally.
-        */
-
         displayProducts(fallbackProducts);
 
         apiBadge.textContent = "● Demo Mode";
         apiBadge.className = "api-badge checking";
+
     }
+
 }
 
 
@@ -155,24 +148,20 @@ async function checkHealth() {
 
         const data = await response.json();
 
-        backendStatus.textContent =
-            data.api || "Connected";
-
+        backendStatus.textContent = data.api || "Connected";
         backendDot.classList.add("online");
+
 
         if (data.database === "connected") {
 
-            databaseStatus.textContent =
-                "Connected to Amazon RDS";
-
+            databaseStatus.textContent = "Connected to Amazon RDS";
             databaseDot.classList.add("online");
 
         } else {
 
-            databaseStatus.textContent =
-                "Database connection unavailable";
-
+            databaseStatus.textContent = "Database connection unavailable";
             databaseDot.classList.add("offline");
+
         }
 
     } catch (error) {
@@ -185,7 +174,9 @@ async function checkHealth() {
 
         backendDot.classList.add("offline");
         databaseDot.classList.add("offline");
+
     }
+
 }
 
 
