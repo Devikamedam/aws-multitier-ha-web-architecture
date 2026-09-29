@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    DEVI STORE - FRONTEND APPLICATION
    ========================================================= */
 
@@ -79,7 +79,7 @@ const fallbackProducts = [
     category: "Computers",
     description: "Powerful laptop for work, development and everyday use.",
     price: 899,
-    icon: "💻",
+    icon: "≡ƒÆ╗",
   },
   {
     id: 2,
@@ -87,7 +87,7 @@ const fallbackProducts = [
     category: "Audio",
     description: "Comfortable wireless headphones with high-quality sound.",
     price: 99,
-    icon: "🎧",
+    icon: "≡ƒÄº",
   },
   {
     id: 3,
@@ -95,7 +95,7 @@ const fallbackProducts = [
     category: "Wearables",
     description: "Track activities, notifications and stay connected.",
     price: 199,
-    icon: "⌚",
+    icon: "ΓîÜ",
   },
 ];
 
@@ -113,7 +113,7 @@ function displayProducts(products) {
 
     card.innerHTML = `
             <div class="product-image">
-                ${product.icon || "📦"}
+                ${product.icon || "≡ƒôª"}
             </div>
 
             <div class="product-content">
@@ -183,14 +183,14 @@ async function loadProducts() {
 
     displayProducts(products);
 
-    apiBadge.textContent = "● API Connected";
+    apiBadge.textContent = "ΓùÅ API Connected";
     apiBadge.className = "api-badge online";
   } catch (error) {
     console.error("Product API error:", error);
 
     displayProducts(fallbackProducts);
 
-    apiBadge.textContent = "● Demo Mode";
+    apiBadge.textContent = "ΓùÅ Demo Mode";
     apiBadge.className = "api-badge checking";
   }
 }
@@ -236,7 +236,7 @@ function updateCart() {
     item.innerHTML = `
             <div class="cart-item-info">
                 <strong>
-                    ${product.icon || "📦"}
+                    ${product.icon || "≡ƒôª"}
                     ${product.name}
                 </strong>
             </div>
@@ -438,21 +438,12 @@ signupForm.addEventListener("submit", async (event) => {
                opening OTP.
             */
 
-    authModal.classList.remove("show");
-
-    authModal.style.display = "none";
-
-    /*
-               Prepare OTP modal
-            */
+    // Keep the Sign-Up modal open underneath the OTP modal.
+    // Do NOT hide or close authModal here.
 
     otpEmailDisplay.textContent = email;
 
     otpCode.value = "";
-
-    /*
-               Open OTP only
-            */
 
     otpModal.classList.add("show");
 
