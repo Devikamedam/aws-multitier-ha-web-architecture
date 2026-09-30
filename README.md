@@ -8,8 +8,6 @@ This project demonstrates practical implementation of AWS networking, EC2 applic
 
 ## Application Preview
 
-![AWS Multi-Tier Architecture](architecture/aws-multitier-ha-architecture.png)
-
 ### Devi Store — Running Through AWS Application Load Balancer
 
 ![Devi Store Application](screenshots/14-alb-dns-application-working.png)
@@ -18,31 +16,20 @@ This project demonstrates practical implementation of AWS networking, EC2 applic
 
 ## Architecture
 
+![AWS Multi-Tier Architecture](architecture/aws-multitier-ha-architecture.png)
+
+### Architecture Flow
+
 ```text
-                         Internet
-                            |
-                            v
-                 Application Load Balancer
-                            |
-                         HTTP :80
-                            |
-                            v
-                    Frontend EC2
-                         Nginx
-                            |
-                     Reverse Proxy
-                            |
-                         TCP :5000
-                            |
-                            v
-                     Backend EC2
-                      Flask API
-                            |
-                         TCP :3306
-                            |
-                            v
-                    Amazon RDS
-                       MySQL
+Internet
+   ↓
+Application Load Balancer
+   ↓
+Frontend EC2 / Nginx
+   ↓
+Backend EC2 / Flask API
+   ↓
+Amazon RDS MySQL
 ```
 
 The application follows a multi-tier architecture:
@@ -51,6 +38,8 @@ The application follows a multi-tier architecture:
 - **Frontend Layer** — EC2 + Nginx
 - **Backend Layer** — EC2 + Python Flask
 - **Database Layer** — Amazon RDS MySQL
+
+---
 
 ---
 
