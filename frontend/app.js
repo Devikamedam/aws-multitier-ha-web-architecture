@@ -3,6 +3,11 @@
    ========================================================= */
 
 /* ================= DOM ELEMENTS ================= */
+const API_BASE =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000"
+    : "";
 
 const loginButton = document.getElementById("login-button");
 const accountMenu = document.getElementById("account-menu");
@@ -155,7 +160,7 @@ function displayProducts(products) {
 
       addToCart(product);
 
-      button.textContent = "Added ?";
+      button.textContent = "Added \u2713";
 
       setTimeout(() => {
         button.textContent = "Add to Cart";
@@ -170,7 +175,7 @@ function displayProducts(products) {
 
 async function loadProducts() {
   try {
-    const response = await fetch("/api/products", {
+    const response = await fetch(`${API_BASE}/api/products`, {
       method: "GET",
       credentials: "include",
     });
@@ -399,7 +404,7 @@ signupForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("/api/register", {
+    const response = await fetch(`${API_BASE}/api/register`, {
       method: "POST",
 
       credentials: "include",
@@ -489,7 +494,7 @@ otpForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("/api/verify-otp", {
+    const response = await fetch(`${API_BASE}/api/verify-otp`, {
       method: "POST",
 
       credentials: "include",
@@ -600,7 +605,7 @@ loginForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("/api/login", {
+    const response = await fetch(`${API_BASE}/api/login`, {
       method: "POST",
 
       credentials: "include",
@@ -667,7 +672,7 @@ loginForm.addEventListener("submit", async (event) => {
 
 logoutButton.addEventListener("click", async () => {
   try {
-    const response = await fetch("/api/logout", {
+    const response = await fetch(`${API_BASE}/api/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -829,7 +834,7 @@ demoPaymentButton.addEventListener("click", async () => {
   demoPaymentButton.textContent = "Processing Demo Payment...";
 
   try {
-    const response = await fetch("/api/orders", {
+    const response = await fetch(`${API_BASE}/api/orders`, {
       method: "POST",
 
       credentials: "include",
@@ -899,7 +904,7 @@ continueShopping.addEventListener("click", () => {
 
 async function checkHealth() {
   try {
-    const response = await fetch("/api/health", {
+    const response = await fetch(`${API_BASE}/api/health`, {
       method: "GET",
       credentials: "include",
     });
@@ -952,7 +957,7 @@ async function checkHealth() {
 
 async function checkLoginSession() {
   try {
-    const response = await fetch("/api/me", {
+    const response = await fetch(`${API_BASE}/api/me`, {
       method: "GET",
       credentials: "include",
     });
@@ -1006,3 +1011,4 @@ checkHealth();
 updateCart();
 
 checkLoginSession();
+
