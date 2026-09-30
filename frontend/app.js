@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    DEVI STORE - FRONTEND APPLICATION
    ========================================================= */
 
@@ -79,7 +79,7 @@ const fallbackProducts = [
     category: "Computers",
     description: "Powerful laptop for work, development and everyday use.",
     price: 899,
-    icon: "≡ƒÆ╗",
+    icon: "\u{1F4BB}",
   },
   {
     id: 2,
@@ -87,7 +87,7 @@ const fallbackProducts = [
     category: "Audio",
     description: "Comfortable wireless headphones with high-quality sound.",
     price: 99,
-    icon: "≡ƒÄº",
+    icon: "\u{1F3A7}",
   },
   {
     id: 3,
@@ -95,7 +95,7 @@ const fallbackProducts = [
     category: "Wearables",
     description: "Track activities, notifications and stay connected.",
     price: 199,
-    icon: "ΓîÜ",
+    icon: "\u231A",
   },
 ];
 
@@ -113,7 +113,7 @@ function displayProducts(products) {
 
     card.innerHTML = `
             <div class="product-image">
-                ${product.icon || "≡ƒôª"}
+                ${product.icon || "\u{1F4E6}"}
             </div>
 
             <div class="product-content">
@@ -155,7 +155,7 @@ function displayProducts(products) {
 
       addToCart(product);
 
-      button.textContent = "Added ✓";
+      button.textContent = "Added ?";
 
       setTimeout(() => {
         button.textContent = "Add to Cart";
@@ -170,7 +170,7 @@ function displayProducts(products) {
 
 async function loadProducts() {
   try {
-    const response = await fetch("http://localhost:5000/api/products", {
+    const response = await fetch("/api/products", {
       method: "GET",
       credentials: "include",
     });
@@ -183,14 +183,14 @@ async function loadProducts() {
 
     displayProducts(products);
 
-    apiBadge.textContent = "ΓùÅ API Connected";
+    apiBadge.textContent = "\u2705 API Connected";
     apiBadge.className = "api-badge online";
   } catch (error) {
     console.error("Product API error:", error);
 
     displayProducts(fallbackProducts);
 
-    apiBadge.textContent = "ΓùÅ Demo Mode";
+    apiBadge.textContent = "\u26A0\uFE0F Demo Mode";
     apiBadge.className = "api-badge checking";
   }
 }
@@ -236,7 +236,7 @@ function updateCart() {
     item.innerHTML = `
             <div class="cart-item-info">
                 <strong>
-                    ${product.icon || "≡ƒôª"}
+                    ${product.icon || "\u{1F4E6}"}
                     ${product.name}
                 </strong>
             </div>
@@ -399,7 +399,7 @@ signupForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/register", {
+    const response = await fetch("/api/register", {
       method: "POST",
 
       credentials: "include",
@@ -489,7 +489,7 @@ otpForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/verify-otp", {
+    const response = await fetch("/api/verify-otp", {
       method: "POST",
 
       credentials: "include",
@@ -600,7 +600,7 @@ loginForm.addEventListener("submit", async (event) => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
 
       credentials: "include",
@@ -667,7 +667,7 @@ loginForm.addEventListener("submit", async (event) => {
 
 logoutButton.addEventListener("click", async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/logout", {
+    const response = await fetch("/api/logout", {
       method: "POST",
       credentials: "include",
     });
@@ -829,7 +829,7 @@ demoPaymentButton.addEventListener("click", async () => {
   demoPaymentButton.textContent = "Processing Demo Payment...";
 
   try {
-    const response = await fetch("http://localhost:5000/api/orders", {
+    const response = await fetch("/api/orders", {
       method: "POST",
 
       credentials: "include",
@@ -899,7 +899,7 @@ continueShopping.addEventListener("click", () => {
 
 async function checkHealth() {
   try {
-    const response = await fetch("http://localhost:5000/api/health", {
+    const response = await fetch("/api/health", {
       method: "GET",
       credentials: "include",
     });
@@ -952,7 +952,7 @@ async function checkHealth() {
 
 async function checkLoginSession() {
   try {
-    const response = await fetch("http://localhost:5000/api/me", {
+    const response = await fetch("/api/me", {
       method: "GET",
       credentials: "include",
     });
