@@ -15,7 +15,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-              - name: Inspect OIDC claims
+      - name: Inspect OIDC claims
         shell: bash
         run: |
           python3 - <<'PY'
